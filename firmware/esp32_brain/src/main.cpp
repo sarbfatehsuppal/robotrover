@@ -156,7 +156,7 @@ static bool create_entities() {
   ok &= rclc_executor_add_subscription(&executor, &sub_climb, &msg_climb, &on_climb, ON_NEW_DATA) == RCL_RET_OK;
   ok &= rclc_executor_add_subscription(&executor, &sub_mode, &msg_mode, &on_mode, ON_NEW_DATA) == RCL_RET_OK;
   ok &= rclc_executor_add_subscription(&executor, &sub_wps, &msg_wps, &on_waypoints, ON_NEW_DATA) == RCL_RET_OK;
-  rmw_uros_sync_session(1000);  // so message stamps line up with the laptop clock
+  (void)rmw_uros_sync_session(1000);  // so message stamps line up with the laptop clock
   return ok;
 }
 
@@ -181,9 +181,10 @@ static void prepare_messages() {
   conf.max_string_capacity = 32;
   conf.max_ros2_type_sequence_capacity = 2;
   conf.max_basic_type_sequence_capacity = 2 + 2 * rover::autonomy::kMaxWaypoints;
-  micro_ros_utilities_create_message_memory(ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String), &msg_mode, conf);
-  micro_ros_utilities_create_message_memory(ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
-                                            &msg_wps, conf);
+  (void)micro_ros_utilities_create_message_memory(ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String), &msg_mode,
+                                                  conf);
+  (void)micro_ros_utilities_create_message_memory(ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
+                                                  &msg_wps, conf);
 
   set_string(msg_odom.header.frame_id, odom_frame);
   set_string(msg_odom.child_frame_id, base_frame);
@@ -289,7 +290,7 @@ static void ros_task(void*) {
             break;
           }
         }
-        rclc_executor_spin_some(&executor, RCL_MS_TO_NS(5));
+        (void)rclc_executor_spin_some(&executor, RCL_MS_TO_NS(5));
         publish_all(now, last_odom, last_range, last_status);
         break;
       case kLost:

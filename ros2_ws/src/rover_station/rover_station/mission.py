@@ -76,10 +76,13 @@ class MissionNode(Node):
     def send(self):
         if not self.points:
             return
-        arr = Float32MultiArray()
-        arr.data = [float(self.mission_id), 1.0 if self.loop else 0.0]
+        # Build the list first: once assigned, msg.data becomes an array('f'),
+        # and array += list raises a TypeError.
+        data = [float(self.mission_id), 1.0 if self.loop else 0.0]
         for x, y in self.points:
-            arr.data += [x, y]
+            data += [float(x), float(y)]
+        arr = Float32MultiArray()
+        arr.data = data
         self.pub_wps.publish(arr)
 
         path = Path()
