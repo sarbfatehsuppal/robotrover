@@ -1,0 +1,83 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ros2:
+    name: ROS 2 Jazzy workspace
+    runs-on: ubuntu-24.04
+    container: ros:jazzy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          apt-get update
+          rosdep update --rosdistro jazzy || true
+          rosdep install --from-paths ros2_ws/src --ignore-src -y --rosdistro jazzy
+      - name: Build
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          cd ros2_ws
+          colcon build --event-handlers console_direct+
+      - name: Robot model is valid
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source ros2_ws/install/setup.bash
+          apt-get install -y liburdfdom-tools
+          xacro "$(ros2 pkg prefix rover_description)/share/rover_description/urdf/rover.urdf.xacro" > /tmp/rover.urdf
+          check_urdf /tmp/rover.urdf
+      - name: Launch files parse
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source ros2_ws/install/setup.bash
+          ros2 launch rover_bringup sim.launch.py --show-args
+          ros2 launch rover_bringup rover.launch.py --show-args
+      - name: Climb analysis runs
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source ros2_ws/install/setup.bash
+          ros2 run rover_sim climb_analysis --quick --out /tmp/img
+      - name: Simulator runs headless and talks
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source ros2_ws/install/setup.bash
+          ros2 launch rover_bringup sim.launch.py rviz:=false start_mode:=auto > /tmp/sim.log 2>&1 &
+          sleep 15
+          ros2 topic list
+          timeout 10 ros2 topic echo --once /odom
+          timeout 10 ros2 topic echo --once /rover/status
+          cat /tmp/sim.log
+
+  stm32:
+    name: STM32 firmware
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install platformio
+      - run: pio run
+        working-directory: firmware/stm32_body
+
+  esp32:
+    name: ESP32 firmware
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update && sudo apt-get install -y cmake python3-venv
+      - run: pip install platformio
+      - run: cp include/wifi_secrets.example.h include/wifi_secrets.h
+        working-directory: firmware/esp32_brain
+      - run: pio run
+        working-directory: firmware/esp32_brain
