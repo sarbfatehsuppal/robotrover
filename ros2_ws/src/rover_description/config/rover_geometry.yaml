@@ -1,0 +1,78 @@
+# Rover geometry, masses and drivetrain constants.
+#
+# This file is the single source of truth for the URDF (xacro loads it) and
+# for the Python physics model in rover_sim. The firmware can't read YAML, so
+# the handful of values it needs are copied into
+# ros2_ws/src/rover_core/include/rover_core/params.hpp. If you change a
+# number here that also appears there, change it in both places.
+#
+# Units: metres, kilograms, seconds, volts, amps, radians unless noted.
+# Keep the format flat ("key: number") so the tiny fallback parser in
+# rover_sim/params.py can read it on machines without PyYAML.
+
+# --- Wheels (Yahboom 65 mm rubber tyre on a TT motor) ----------------------
+wheel_radius: 0.0325
+wheel_width: 0.026
+track_width: 0.230            # left wheel centre to right wheel centre
+
+# --- Side view of one rocker-bogie, relative to the rocker pivot ----------
+# x points forward, z points up, measured with all six wheels on flat ground.
+# The front wheel hangs off the rocker. The middle and rear wheels hang off
+# the bogie, which pivots on the back end of the rocker (Curiosity layout).
+#
+# The bogie pin position came out of the climb model (docs/physics.md):
+# 30 mm above the axles and a little forward of centre. Higher and the
+# bogie pops a wheelie when the rear wheels push; lower and the bogie arm
+# scrapes the edge of a 65 mm step.
+front_axle_x: 0.130
+front_axle_z: -0.075
+bogie_pivot_x: -0.045
+bogie_pivot_z: -0.045
+bogie_limit: 0.70             # rad (40 deg) each way before the bogie hits its printed stop
+rocker_limit: 0.50            # rad (29 deg) each way, rocker relative to the body
+middle_axle_x: 0.000
+middle_axle_z: -0.075
+rear_axle_x: -0.130
+rear_axle_z: -0.075
+
+# --- Body (the box that holds batteries + electronics) --------------------
+body_length: 0.220
+body_width: 0.140
+body_height: 0.070
+body_center_x: 0.000          # body box centre, relative to the rocker pivot
+body_center_z: 0.010
+
+# --- Masses (estimates, see docs/physics.md for the breakdown) ------------
+mass_body: 0.92               # PETG body + 16 AA NiMH + holders + boards + wiring
+body_cg_x: 0.000              # body centre of mass relative to the rocker pivot
+body_cg_z: -0.005             # batteries sit low in the body
+mass_rocker: 0.050            # each side, includes steering servo + bearings
+mass_bogie: 0.035             # each side, includes bearings
+mass_wheel_motor: 0.070       # each corner: TT motor 40 g + wheel 28 g + bracket
+
+# --- Drivetrain: TT motor, metal gearbox 1:90, fed by MX1616 at 5 V -------
+# Bench numbers for this motor class: ~110-120 rpm no-load and ~1.0 A stall
+# at 6 V. The constants below are referred to the gearbox output shaft.
+motor_bus_voltage: 5.0        # MP2482 buck output feeding the MX1616 boards
+motor_resistance: 6.0         # winding resistance, ohm
+driver_resistance: 0.5        # MX1616 high + low side on-resistance, ohm
+motor_ke: 0.443               # back-EMF constant, V per rad/s (output shaft)
+motor_kt: 0.173               # torque per amp, N*m/A (output shaft, gearbox losses included)
+motor_no_load_current: 0.15   # A, friction in the gearbox
+motor_time_constant: 0.08     # s, wheel + share of rover inertia (rough)
+
+# --- Ground contact --------------------------------------------------------
+mu_ground: 0.8                # rubber on dry wood / concrete
+rolling_resistance: 0.03
+
+# --- Steering (two servos on the front corners) ---------------------------
+steer_limit: 1.05             # rad, about 60 degrees each way
+steer_rate: 6.0               # rad/s, roughly what an SG90 / MG90S manages under load
+
+# --- Ultrasonic sensor (HC-SR04) on the front of the body -----------------
+sonar_x: 0.115                # relative to the rocker pivot
+sonar_z: 0.025
+sonar_tilt: 0.175             # rad (10 deg) nose-up, so knee-high rocks don't trigger it
+sonar_half_angle: 0.26        # rad (15 deg)
+sonar_min_range: 0.02
+sonar_max_range: 4.0

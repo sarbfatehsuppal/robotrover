@@ -1,0 +1,9 @@
+# Goes over the curb, around the crate, over the rock and the book, and home.
+# Metres, relative to where the rover was switched on (x forward, y left).
+name: yard loop
+loop: false
+waypoints:
+  - [2.0, 0.0]
+  - [2.0, 1.1]
+  - [0.0, 1.1]
+  - [0.0, 0.0]

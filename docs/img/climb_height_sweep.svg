@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="300" viewBox="0 0 860 300">
+<rect width="860" height="300" fill="#ffffff"/>
+<rect x="70.0" y="40.0" width="340.0" height="200.0" rx="0.0" fill="#fafafa" stroke="#bbb" stroke-width="1.0" fill-opacity="1.0"/>
+<line x1="70.0" y1="40.0" x2="70.0" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="70.0" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">20</text>
+<line x1="107.8" y1="40.0" x2="107.8" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="107.8" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">30</text>
+<line x1="145.6" y1="40.0" x2="145.6" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="145.6" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">40</text>
+<line x1="183.3" y1="40.0" x2="183.3" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="183.3" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">50</text>
+<line x1="221.1" y1="40.0" x2="221.1" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="221.1" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">60</text>
+<line x1="258.9" y1="40.0" x2="258.9" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="258.9" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">70</text>
+<line x1="296.7" y1="40.0" x2="296.7" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="296.7" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">80</text>
+<line x1="334.4" y1="40.0" x2="334.4" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="334.4" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">90</text>
+<line x1="372.2" y1="40.0" x2="372.2" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="372.2" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100</text>
+<line x1="410.0" y1="40.0" x2="410.0" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="410.0" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">110</text>
+<line x1="70.0" y1="240.0" x2="410.0" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="64.0" y="243.5" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">0</text>
+<line x1="70.0" y1="190.0" x2="410.0" y2="190.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="64.0" y="193.5" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">0.4</text>
+<line x1="70.0" y1="140.0" x2="410.0" y2="140.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="64.0" y="143.5" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">0.8</text>
+<line x1="70.0" y1="90.0" x2="410.0" y2="90.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="64.0" y="93.5" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">1.2</text>
+<line x1="70.0" y1="40.0" x2="410.0" y2="40.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="64.0" y="43.5" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">1.6</text>
+<text x="240.0" y="270.0" font-size="11" fill="#333" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">step height [mm]</text>
+<text x="32.0" y="140.0" font-size="11" fill="#333" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 32.0 140.0)">grip needed (mu)</text>
+<text x="70.0" y="32.0" font-size="13" fill="#222" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Tyre grip needed to get up</text>
+<rect x="500.0" y="40.0" width="340.0" height="200.0" rx="0.0" fill="#fafafa" stroke="#bbb" stroke-width="1.0" fill-opacity="1.0"/>
+<line x1="500.0" y1="40.0" x2="500.0" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="500.0" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">20</text>
+<line x1="537.8" y1="40.0" x2="537.8" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="537.8" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">30</text>
+<line x1="575.6" y1="40.0" x2="575.6" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="575.6" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">40</text>
+<line x1="613.3" y1="40.0" x2="613.3" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="613.3" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">50</text>
+<line x1="651.1" y1="40.0" x2="651.1" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="651.1" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">60</text>
+<line x1="688.9" y1="40.0" x2="688.9" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="688.9" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">70</text>
+<line x1="726.7" y1="40.0" x2="726.7" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="726.7" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">80</text>
+<line x1="764.4" y1="40.0" x2="764.4" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="764.4" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">90</text>
+<line x1="802.2" y1="40.0" x2="802.2" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="802.2" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100</text>
+<line x1="840.0" y1="40.0" x2="840.0" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="840.0" y="254.0" font-size="10" fill="#555" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">110</text>
+<line x1="500.0" y1="240.0" x2="840.0" y2="240.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="494.0" y="243.5" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">0</text>
+<line x1="500.0" y1="206.7" x2="840.0" y2="206.7" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="494.0" y="210.2" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">20</text>
+<line x1="500.0" y1="173.3" x2="840.0" y2="173.3" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="494.0" y="176.8" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">40</text>
+<line x1="500.0" y1="140.0" x2="840.0" y2="140.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="494.0" y="143.5" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">60</text>
+<line x1="500.0" y1="106.7" x2="840.0" y2="106.7" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="494.0" y="110.2" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">80</text>
+<line x1="500.0" y1="73.3" x2="840.0" y2="73.3" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="494.0" y="76.8" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100</text>
+<line x1="500.0" y1="40.0" x2="840.0" y2="40.0" stroke="#e3e3e3" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="494.0" y="43.5" font-size="10" fill="#555" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">120</text>
+<text x="670.0" y="270.0" font-size="11" fill="#333" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif">step height [mm]</text>
+<text x="462.0" y="140.0" font-size="11" fill="#333" text-anchor="middle" font-weight="normal" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 462.0 140.0)">% of stall torque</text>
+<text x="500.0" y="32.0" font-size="13" fill="#222" text-anchor="start" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Peak motor torque on the way up</text>
+<polyline points="70.0,175.4 88.9,175.4 107.8,157.9 126.7,145.6 145.6,146.4 164.4,145.6 183.3,146.4 202.2,145.6 221.1,146.4 240.0,145.6 258.9,146.4 277.8,145.6 296.7,146.4 315.6,145.6 334.4,146.4 353.3,145.6 372.2,146.4 391.1,145.6" fill="none" stroke="#1f77b4" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round"/>
+<line x1="70.0" y1="140.0" x2="410.0" y2="140.0" stroke="#d62728" stroke-width="1.2" stroke-opacity="1.0" stroke-dasharray="5,4"/>
+<text x="406.0" y="136.0" font-size="10" fill="#d62728" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">mu = 0.80</text>
+<polyline points="500.0,154.5 518.9,153.8 537.8,123.8 556.7,100.0 575.6,102.1 594.4,100.0 613.3,102.1 632.2,100.0 651.1,102.1 670.0,100.0 688.9,102.1 707.8,100.0 726.7,102.1 745.6,100.0 764.4,102.1 783.3,100.0 802.2,102.1 821.1,100.0 840.0,102.1" fill="none" stroke="#222" stroke-width="2.2" stroke-opacity="1.0" stroke-linejoin="round"/>
+<line x1="500.0" y1="73.3" x2="840.0" y2="73.3" stroke="#d62728" stroke-width="1.2" stroke-opacity="1.0" stroke-dasharray="5,4"/>
+<text x="836.0" y="69.3" font-size="10" fill="#d62728" text-anchor="end" font-weight="normal" font-family="Helvetica, Arial, sans-serif">stall at 5 V</text>
+<line x1="240.0" y1="40.0" x2="240.0" y2="240.0" stroke="#888" stroke-width="1.0" stroke-opacity="1.0" stroke-dasharray="3,3"/>
+<text x="243.0" y="52.0" font-size="9" fill="#666" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">wheel diameter</text>
+<line x1="670.0" y1="40.0" x2="670.0" y2="240.0" stroke="#888" stroke-width="1.0" stroke-opacity="1.0" stroke-dasharray="3,3"/>
+<text x="673.0" y="52.0" font-size="9" fill="#666" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">wheel diameter</text>
+<circle cx="70.0" cy="175.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="88.9" cy="175.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="107.8" cy="157.9" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="126.7" cy="145.6" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="145.6" cy="146.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="164.4" cy="145.6" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="183.3" cy="146.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="202.2" cy="145.6" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="221.1" cy="146.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="240.0" cy="145.6" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="258.9" cy="146.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="277.8" cy="145.6" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="296.7" cy="146.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="315.6" cy="145.6" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="334.4" cy="146.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="353.3" cy="145.6" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="372.2" cy="146.4" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<circle cx="391.1" cy="145.6" r="3.5" fill="#2ca02c" stroke="none" stroke-width="1.0" fill-opacity="1.0" stroke-opacity="1.0"/>
+<text x="70.0" y="290.0" font-size="10" fill="#666" text-anchor="start" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Green dots: the model says it climbs with the tyres and motors we have. Red: it does not.</text>
+</svg>

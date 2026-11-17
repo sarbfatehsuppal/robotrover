@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<!--
+  Six-wheel rocker-bogie rover, Curiosity layout at roughly 1:10 scale.
+  Every dimension comes from config/rover_geometry.yaml, so the model,
+  the physics in rover_sim and the firmware all agree.
+
+  base_link sits on the axis through the two rocker pivots, centred between
+  them. Wheel order and joint names match rover_sim/sim_node.py.
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robotrover">
+
+  <xacro:property name="g" value="${xacro.load_yaml('$(find rover_description)/config/rover_geometry.yaml')}"/>
+  <xacro:property name="r" value="${g['wheel_radius']}"/>
+  <xacro:property name="ww" value="${g['wheel_width']}"/>
+  <xacro:property name="wheel_y" value="${g['track_width'] / 2}"/>
+  <xacro:property name="pivot_y" value="${g['body_width'] / 2 + 0.014}"/>
+  <xacro:property name="arm" value="0.012"/>
+
+  <material name="petg"><color rgba="0.86 0.87 0.89 1"/></material>
+  <material name="petg_blue"><color rgba="0.23 0.36 0.57 1"/></material>
+  <material name="petg_orange"><color rgba="0.75 0.38 0.10 1"/></material>
+  <material name="tyre"><color rgba="0.10 0.10 0.10 1"/></material>
+  <material name="hub"><color rgba="0.95 0.76 0.00 1"/></material>
+  <material name="motor"><color rgba="0.20 0.45 0.85 1"/></material>
+  <material name="pcb"><color rgba="0.05 0.35 0.65 1"/></material>
+  <material name="steel"><color rgba="0.70 0.70 0.72 1"/></material>
+
+  <xacro:macro name="box_inertia" params="m x y z">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m * (y*y + z*z) / 12}" iyy="${m * (x*x + z*z) / 12}" izz="${m * (x*x + y*y) / 12}"
+               ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- A straight printed arm between two points in the x-z plane. -->
+  <xacro:macro name="arm_visual" params="x1 z1 x2 z2 material">
+    <visual>
+      <origin xyz="${(x1 + x2) / 2} 0 ${(z1 + z2) / 2}"
+              rpy="0 ${-atan2(z2 - z1, x2 - x1)} 0"/>
+      <geometry><box size="${sqrt((x2 - x1)**2 + (z2 - z1)**2) + arm} ${arm} ${arm}"/></geometry>
+      <material name="${material}"/>
+    </visual>
+  </xacro:macro>
+
+  <!-- Wheel + TT motor. `side` is 1 on the left, -1 on the right. -->
+  <xacro:macro name="wheel" params="name parent x y z side">
+    <joint name="wheel_${name}_joint" type="continuous">
+      <parent link="${parent}"/>
+      <child link="wheel_${name}"/>
+      <origin xyz="${x} ${y} ${z}"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+    <link name="wheel_${name}">
+      <visual>
+        <origin rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="${r}" length="${ww}"/></geometry>
+        <material name="tyre"/>
+      </visual>
+      <visual>
+        <origin xyz="0 ${side * (ww / 2 + 0.001)} 0" rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="${r * 0.62}" length="0.003"/></geometry>
+        <material name="hub"/>
+      </visual>
+      <visual>
+        <origin xyz="0.012 0 0"/>
+        <geometry><box size="0.03 0.004 0.006"/></geometry>
+        <material name="hub"/>
+      </visual>
+      <collision>
+        <origin rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="${r}" length="${ww}"/></geometry>
+      </collision>
+      <xacro:box_inertia m="0.028" x="${2*r}" y="${ww}" z="${2*r}"/>
+    </link>
+  </xacro:macro>
+
+  <!-- ===================================================== body -->
+  <link name="base_link"/>
+
+  <joint name="body_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="body"/>
+    <origin xyz="${g['body_center_x']} 0 ${g['body_center_z']}"/>
+  </joint>
+  <link name="body">
+    <visual>
+      <geometry><box size="${g['body_length']} ${g['body_width']} ${g['body_height']}"/></geometry>
+      <material name="petg"/>
+    </visual>
+    <!-- deck plate with the boards on it -->
+    <visual>
+      <origin xyz="0.02 0 ${g['body_height'] / 2 + 0.004}"/>
+      <geometry><box size="0.07 0.025 0.008"/></geometry>
+      <material name="pcb"/>
+    </visual>
+    <visual>
+      <origin xyz="-0.04 0 ${g['body_height'] / 2 + 0.004}"/>
+      <geometry><box size="0.055 0.03 0.008"/></geometry>
+      <material name="pcb"/>
+    </visual>
+    <collision>
+      <geometry><box size="${g['body_length']} ${g['body_width']} ${g['body_height']}"/></geometry>
+    </collision>
+    <xacro:box_inertia m="${g['mass_body']}" x="${g['body_length']}" y="${g['body_width']}" z="${g['body_height']}"/>
+  </link>
+
+  <!-- Differential bar across the top. It keeps the body at the average
+       pitch of the two rockers; here it's just for looks. -->
+  <joint name="differential_joint" type="fixed">
+    <parent link="body"/>
+    <child link="differential_bar"/>
+    <origin xyz="-0.03 0 ${g['body_height'] / 2 + 0.014}"/>
+  </joint>
+  <link name="differential_bar">
+    <visual>
+      <origin rpy="${pi/2} 0 0"/>
+      <geometry><cylinder radius="0.004" length="${2 * pivot_y}"/></geometry>
+      <material name="steel"/>
+    </visual>
+  </link>
+
+  <!-- HC-SR04, tilted nose-up so climbable rocks stay under the beam -->
+  <joint name="sonar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="sonar_link"/>
+    <origin xyz="${g['sonar_x']} 0 ${g['sonar_z']}" rpy="0 ${-g['sonar_tilt']} 0"/>
+  </joint>
+  <link name="sonar_link">
+    <visual>
+      <origin xyz="-0.006 0 0"/>
+      <geometry><box size="0.003 0.045 0.02"/></geometry>
+      <material name="pcb"/>
+    </visual>
+    <visual>
+      <origin xyz="0.002 0.013 0" rpy="0 ${pi/2} 0"/>
+      <geometry><cylinder radius="0.008" length="0.012"/></geometry>
+      <material name="steel"/>
+    </visual>
+    <visual>
+      <origin xyz="0.002 -0.013 0" rpy="0 ${pi/2} 0"/>
+      <geometry><cylinder radius="0.008" length="0.012"/></geometry>
+      <material name="steel"/>
+    </visual>
+  </link>
+
+  <!-- ===================================================== one side -->
+  <xacro:macro name="side" params="name s">
+    <joint name="rocker_${name}_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="rocker_${name}"/>
+      <origin xyz="0 ${s * pivot_y} 0"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-g['rocker_limit']}" upper="${g['rocker_limit']}" effort="5" velocity="5"/>
+    </joint>
+    <link name="rocker_${name}">
+      <xacro:arm_visual x1="0" z1="0" x2="${g['front_axle_x']}" z2="${g['front_axle_z']}" material="petg_blue"/>
+      <xacro:arm_visual x1="0" z1="0" x2="${g['bogie_pivot_x']}" z2="${g['bogie_pivot_z']}" material="petg_blue"/>
+      <visual>
+        <origin rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="0.011" length="0.008"/></geometry>
+        <material name="steel"/>
+      </visual>
+      <xacro:box_inertia m="${g['mass_rocker']}" x="0.2" y="${arm}" z="0.08"/>
+    </link>
+
+    <!-- front corner: steering servo + wheel -->
+    <joint name="steer_front_${name}_joint" type="revolute">
+      <parent link="rocker_${name}"/>
+      <child link="steer_front_${name}"/>
+      <origin xyz="${g['front_axle_x']} ${s * (wheel_y - pivot_y)} ${g['front_axle_z']}"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-g['steer_limit']}" upper="${g['steer_limit']}" effort="0.2" velocity="${g['steer_rate']}"/>
+    </joint>
+    <link name="steer_front_${name}">
+      <visual>
+        <origin xyz="0 ${-s * (ww / 2 + 0.011)} 0.022"/>
+        <geometry><box size="0.022 0.019 0.063"/></geometry>
+        <material name="motor"/>
+      </visual>
+      <visual>
+        <origin xyz="0 0 0.065"/>
+        <geometry><box size="0.023 0.012 0.022"/></geometry>
+        <material name="petg_blue"/>
+      </visual>
+      <xacro:box_inertia m="0.05" x="0.03" y="0.03" z="0.07"/>
+    </link>
+    <xacro:wheel name="front_${name}" parent="steer_front_${name}" x="0" y="0" z="0" side="${s}"/>
+
+    <!-- bogie with the middle and rear wheels -->
+    <joint name="bogie_${name}_joint" type="revolute">
+      <parent link="rocker_${name}"/>
+      <child link="bogie_${name}"/>
+      <origin xyz="${g['bogie_pivot_x']} 0 ${g['bogie_pivot_z']}"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-g['bogie_limit']}" upper="${g['bogie_limit']}" effort="5" velocity="5"/>
+    </joint>
+    <link name="bogie_${name}">
+      <xacro:arm_visual x1="0" z1="0" x2="${g['middle_axle_x'] - g['bogie_pivot_x']}"
+                        z2="${g['middle_axle_z'] - g['bogie_pivot_z']}" material="petg_orange"/>
+      <xacro:arm_visual x1="0" z1="0" x2="${g['rear_axle_x'] - g['bogie_pivot_x']}"
+                        z2="${g['rear_axle_z'] - g['bogie_pivot_z']}" material="petg_orange"/>
+      <visual>
+        <origin rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="0.009" length="0.008"/></geometry>
+        <material name="steel"/>
+      </visual>
+      <visual>
+        <origin xyz="${g['middle_axle_x'] - g['bogie_pivot_x']} ${s * (wheel_y - pivot_y - ww / 2 - 0.011)}
+                     ${g['middle_axle_z'] - g['bogie_pivot_z'] + 0.022}"/>
+        <geometry><box size="0.022 0.019 0.063"/></geometry>
+        <material name="motor"/>
+      </visual>
+      <visual>
+        <origin xyz="${g['rear_axle_x'] - g['bogie_pivot_x']} ${s * (wheel_y - pivot_y - ww / 2 - 0.011)}
+                     ${g['rear_axle_z'] - g['bogie_pivot_z'] + 0.022}"/>
+        <geometry><box size="0.022 0.019 0.063"/></geometry>
+        <material name="motor"/>
+      </visual>
+      <xacro:box_inertia m="${g['mass_bogie']}" x="0.14" y="${arm}" z="0.04"/>
+    </link>
+    <xacro:wheel name="middle_${name}" parent="bogie_${name}"
+                 x="${g['middle_axle_x'] - g['bogie_pivot_x']}" y="${s * (wheel_y - pivot_y)}"
+                 z="${g['middle_axle_z'] - g['bogie_pivot_z']}" side="${s}"/>
+    <xacro:wheel name="rear_${name}" parent="bogie_${name}"
+                 x="${g['rear_axle_x'] - g['bogie_pivot_x']}" y="${s * (wheel_y - pivot_y)}"
+                 z="${g['rear_axle_z'] - g['bogie_pivot_z']}" side="${s}"/>
+  </xacro:macro>
+
+  <xacro:side name="left" s="1"/>
+  <xacro:side name="right" s="-1"/>
+
+</robot>
