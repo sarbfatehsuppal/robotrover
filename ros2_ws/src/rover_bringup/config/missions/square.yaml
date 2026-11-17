@@ -1,0 +1,8 @@
+# Same rectangle the ESP32 firmware falls back to when no laptop has sent a mission.
+name: square
+loop: false
+waypoints:
+  - [1.2, 0.0]
+  - [1.2, 0.8]
+  - [0.0, 0.8]
+  - [0.0, 0.0]

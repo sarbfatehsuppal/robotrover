@@ -1,0 +1,11 @@
+# A living-room "Mars yard". Heights are what matter:
+#   up to ~65 mm  -> under the sonar beam, the rocker-bogie drives over it
+#   taller        -> the sonar sees it and the rover goes around
+# x forward and y left of where the rover starts, metres. yaw_deg optional.
+obstacles:
+  - {name: curb,        x: 0.90, y: 0.00, length: 0.25, width: 0.70, height: 0.065}
+  - {name: crate,       x: 2.00, y: 0.55, length: 0.30, width: 0.30, height: 0.25}
+  - {name: rock,        x: 1.30, y: 1.15, length: 0.14, width: 0.16, height: 0.045, yaw_deg: 20}
+  - {name: book,        x: 0.55, y: 1.10, length: 0.30, width: 0.22, height: 0.035, yaw_deg: -10}
+  - {name: bin,         x: -0.60, y: 0.60, length: 0.30, width: 0.30, height: 0.40}
+  - {name: boulder,     x: 2.70, y: 0.20, length: 0.35, width: 0.35, height: 0.18}

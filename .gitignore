@@ -1,0 +1,20 @@
+# ROS 2 / colcon
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# PlatformIO
+.pio/
+.vscode/
+
+# Your WiFi password stays on your machine
+firmware/esp32_brain/include/wifi_secrets.h
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Editors / OS
+.DS_Store
+*.swp
