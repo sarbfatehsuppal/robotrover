@@ -4,6 +4,10 @@ A six-wheel rover designed around a PETG rocker-bogie suspension, 65 mm wheels, 
 
 Both firmware targets build in [CI](.github/workflows/build.yml), which also starts the ROS 2 simulator headless. Physical testing is pending.
 
+## Mechanical design
+
+[SolidWorks assembly](hardware/cad/Rover_Assembly.step.SLDASM) for the rover's 3D-printable rocker-bogie suspension. Open the assembly in SolidWorks to inspect the design.
+
 ## System architecture
 
 | Component | Role |
