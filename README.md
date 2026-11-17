@@ -122,7 +122,9 @@ you want to test the logic without the drift.
 battery packs, two 5 V bucks (one just for the motors), three MX1616 boards,
 and a voltage divider on the sonar's ECHO pin.
 
-**2. Flash the STM32.** Install [PlatformIO](https://platformio.org/install/cli), then:
+**2. Flash the STM32.** Install [PlatformIO](https://platformio.org/install/cli)
+with its official installer script (not `pip install platformio`; the micro-ROS
+library looks for the environment that installer creates), then:
 
 ```bash
 cd firmware/stm32_body
