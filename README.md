@@ -8,6 +8,10 @@ Both firmware targets build in [CI](.github/workflows/build.yml), which also sta
 
 [SolidWorks assembly](hardware/cad/Rover_Assembly.step.SLDASM) for the rover's 3D-printable rocker-bogie suspension. Open the assembly in SolidWorks to inspect the design.
 
+![Rover front view](docs/img/rover-front.png)
+
+![Rover side view](docs/img/rover-side.png)
+
 ## Altium schematic and PCB
 
 The [Altium project and schematic files](altium/) cover the four-powered-wheel build with one eight-AA battery pack. Open `altium/Rover_Carrier.PrjPcb` in Altium Designer, or view the [three-sheet schematic PDF](altium/Rover_Carrier.pdf).
